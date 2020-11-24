@@ -201,6 +201,19 @@ include("db.php");
                                             <td><?php echo $date; ?></td>
                                             <td>
                                             <?php
+                                                //  Para visualizar las habitaciones de la reserva tuvimos un pequeño problema, pueden ser más
+                                                // de una.
+                                                //
+                                                //  En la tabla de los pasajeros existe una columna de nombre 'habitacion', esta tiene un formato
+                                                // siguiente: id,id,id,id... siendo 'id' la ID de la habitación identificatoria.
+                                                //
+                                                //  Guardamos las habitaciones ocupadas de esta forma para luego "explotar" la cadena de
+                                                // caractéres donde cada ID es separada por una ','. Obtenemos un arreglo de IDs de habitaciones
+                                                // las cuales utilizamos para volver a llamar a la base de datos y preguntarle el número de esa
+                                                // habitación y su nombre característico, el cuál se puede observar luego en la tabla web de las
+                                                // reservas registradas.
+                                                //
+                                                //  El código debajo hace el procedimiento explicado.
                                                 $rooms = explode(",", $row['habitacion']);
 
                                                 for ($i = 0; $i < count($rooms); $i++) {
@@ -224,6 +237,15 @@ include("db.php");
                                             <td><?php echo ($estado == 0 ? "No Pago" : "Pagado");?></td>
                                             <td><?php echo "$" . $costo; ?></td>
                                             <td>
+                                                <!--
+                                                Estos botones nos permiten ejecutar acciones sobre estos empleados.
+
+                                                Los atributos data-* son valores importantes para transferir datos al modal
+                                                una vez que el usuario pide visualizar el mismo cuando clickea el botón.
+
+                                                Cada empleado tendrá uno de estos sets de botones, además de que este comentario
+                                                estara repetido encima de cada set de botones para cada empleado.
+                                                -->
                                                 <button type="button" class="btn" data-toggle="modal" data-target="#delete-reserva"
                                                         data-id="<?php echo $id; ?>"
                                                         data-name="<?php echo $name; ?>">
@@ -255,7 +277,9 @@ include("db.php");
             </div>
         </div>
     </body>
-
+    
+    <!-- JavaScript utilizado para pasar los datos dentro del atributo 'data' de cada uno de los botones al modal
+    una vez clickeado el botón. -->
     <script>
     $("#edit-reserva").on('show.bs.modal', function (e) {
         let btn = $(e.relatedTarget);
@@ -323,6 +347,17 @@ include("db.php");
 </html>
 
 <?php
+
+//  Debajo de todas las páginas donde hay interacción con la base de datos tenemos estas declaraciones.
+//
+//  PHP detecta si el usuario hizo un request HTTP POST (enviar datos a la página), si ese es el caso, procede a obtener la lista de datos
+// que el formulario envió para luego ponerlos en una 'query' la cual será interpretada por la base de datos y hará la acción necesaria.
+//
+//  SELECT se utiliza para traer datos de una tabla desde la base, INSERT para insertar nuevos datos en una tabla, DELETE para eliminar datos
+// de una tabla, y UPDATE para actualizar valores de un registro existente en una tabla de la base de datos.
+//
+//  Existen muchos otros statements de SQL para interactuar con la DB, todos estos han sido utilizados desde el conocimiento brindado por
+// la documentación del lenguaje SQL: https://dev.mysql.com/doc/
 
 if (isset($_POST['registerReserva'])) {
     $reserver   = $_POST['reservant'];

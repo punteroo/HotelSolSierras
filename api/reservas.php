@@ -1,5 +1,7 @@
 <?php
 
+// Información de headers HTTP para permitir el pedido de datos a esta página.
+// Esta página es utilizada UNICAMENTE para obtener datos desde la base de datos en formato JSON o similar.
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Methods: GET");

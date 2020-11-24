@@ -1,14 +1,21 @@
+<!-- Todo documento de HTML empieza con esta etiqueta, declara que se utilize la última versión de HTML disponible. -->
+
 <!DOCTYPE HTML>
 
+<!-- Incluimos el archivo .php que contiene la conexión a nuestra base de datos. Esto nos permite interactuar con la misma
+     desde cualquier parte del archivo. -->
 <?php
 include("db.php");
 ?>
 
 <html>
+    <!-- El tag 'head' nos permite definir meta-datos de la página, como tambien importar librerias, imágenes, etcétera. -->
     <head>
         <title>Habitaciones - Sol de las Tierras</title>
 
         <?php
+        // Incluimos las dependencias, estas serían Bootstrap y JQuery, además de otros elementos detallados en el documento.
+        
         include("mod-dependencies.php");
         ?>
     </head>
@@ -72,10 +79,16 @@ include("db.php");
                                         <label for="tipo">Tipo de Habitación</label>
                                         <select class="form-control" name="tipo">
                                             <?php
+                                                // $q = Código SQL para interactuar con la base. Aquí traemos todos los empleados registrados en
+                                                //     la base de datos.
+                                                // $r = Resultado del pedido a la base.
                                                 $q = "SELECT id, nombre, descripcion FROM habitaciones_tipos";
                                                 $r = mysqli_query($db, $q);
 
+                                                // Si el resultado fue exitoso, empezar a listar los tipos de habitación en la tabla.
                                                 if ($r) {
+                                                    //  Iterar por todos los resultados obtenidos y declarar variables con sus valores correspondientes
+                                                    // los cuales serán visualizados por el usuario.
                                                     while ($row = $r->fetch_array()) {
                                                         $id   = $row['id'];
                                                         $name = $row['nombre'];
@@ -148,10 +161,16 @@ include("db.php");
                         <div class="card-body">
                             <div class="container-fluid d-flex">
                         <?php
+                            // $q = Código SQL para interactuar con la base. Aquí traemos todos los empleados registrados en
+                            //     la base de datos.
+                            // $r = Resultado del pedido a la base.
                             $q = "SELECT * FROM habitaciones";
                             $r = mysqli_query($db, $q);
-
+                            
+                            // Si el resultado fue exitoso, empezar a listar las habitaciones en la tabla.
                             if ($r) {
+                                //  Iterar por todos los resultados obtenidos y declarar variables con sus valores correspondientes
+                                // los cuales serán visualizados por el usuario.
                                 while ($row = $r->fetch_array()) {
                                     $id     = $row['id'];
                                     $num    = $row['numero'];
@@ -204,6 +223,9 @@ include("db.php");
                                 </thead>
                                 <tbody>
                                     <?php
+                                        // $q = Código SQL para interactuar con la base. Aquí traemos todos los empleados registrados en
+                                        //     la base de datos.
+                                        // $r = Resultado del pedido a la base.
                                         $q = "SELECT * FROM habitaciones_tipos";
                                         $r = mysqli_query($db, $q);
 
@@ -219,6 +241,15 @@ include("db.php");
                                             <td><?php echo $desc; ?></td>
                                             <td><?php echo '$' . $cost; ?></td>
                                             <td>
+                                                <!--
+                                                Estos botones nos permiten ejecutar acciones sobre estos empleados.
+
+                                                Los atributos data-* son valores importantes para transferir datos al modal
+                                                una vez que el usuario pide visualizar el mismo cuando clickea el botón.
+
+                                                Cada empleado tendrá uno de estos sets de botones, además de que este comentario
+                                                estara repetido encima de cada set de botones para cada empleado.
+                                                -->
                                                 <button type="button" class="btn" data-toggle="modal" data-target="#delete-type"
                                                         data-id="<?php echo $id; ?>"
                                                         data-name="<?php echo $name; ?>">
@@ -242,18 +273,24 @@ include("db.php");
                         </div>
                     </div>
 
+                    <!-- JavaScript utilizado para pasar los datos dentro del atributo 'data' de cada uno de los botones al modal
+                    una vez clickeado el botón. -->
                     <script>
+                        // Cuando se clickea el modal...
                         $("#room-resume").on('show.bs.modal', function (e) {
                             let btn = $(e.relatedTarget);
 
+                            // Lista de datos en el botón.
                             let id     = btn.data('id'),
                                 name   = btn.data('name'),
                                 num    = btn.data('nro'),
                                 type   = btn.data('type'),
                                 status = btn.data('status');
 
+                            // Objeto global del modal que se está abriendo.
                             let modal = $(this);
 
+                            // Reemplazamos todos los valores del botón hacia adentro del modal.
                             modal.find(".modal-title").text(`Resumen Habitación N°${num}`);
 
                             modal.find('#p-id').attr('value', id);
@@ -262,18 +299,28 @@ include("db.php");
                             modal.find("input[name='nombre']").attr('value', name);
                             modal.find(`option[value='${type}']`).attr('selected', true);
 
+                            //  Para definir el estado de la habitación, esta depende del valor del estado de la misma cargado en la base
+                            // de datos. El texto impreso está dado por este JavaScript.
                             let phrases = ['LIBRE', 'RESERVADA', 'OCUPADA'];
                             let colors  = ['green', 'orange', 'red'];
 
                             modal.find('#estado').text(phrases[parseInt(status)]);
                             modal.find('#estado').css('color', colors[parseInt(status)]);
 
+                            //  Para la tabla que muestra la reserva que ocupa esa habitación, hacemos una AJAX call a un pseudo API REST alojado
+                            // en la carpeta 'api'. Estas "API REST" nos permiten obtener datos en formato JSON desde la base de datos, algo
+                            // que normalmente JavaScript no puede realizar, entonces dejamos que PHP obtenga los datos y se los entregue a 
+                            // esta función AJAX para que pueda trabajar sobre el mismo.
                             $.ajax({
+                                // Link a la API REST que queremos consultar.
                                 url: 'https://anarquiteam.000webhostapp.com/api/reservas.php?getRoom=' + id,
+                                // Tipo de HTTP Request.
                                 type: 'GET',
+                                // ¿Éxito en la GET REQUEST?
                                 success: function (data) {
                                     let json = data;
 
+                                    // Cargamos la tabla con todos los datos que obtuvimos.
                                     for (let i = 0; i < json.length; i++) {
                                         let tBody = modal.find("#reservasTable");
 
@@ -294,20 +341,26 @@ include("db.php");
                             })
                         });
 
+                        // Cuando se esconde el modal...
                         $("#room-resume").on('hidden.bs.modal', function (e) {
+                            // Vaciamos el contenido de la tabla del modal, para cuando el usuario decida abrir otro modal.
                             $("#reservasTable").empty();
                         });
 
+                        // Cuando se clickea el modal...
                         $("#edit-type").on('show.bs.modal', function (e) {
                             let btn = $(e.relatedTarget);
 
+                            // Lista de datos en el botón.
                             let id   = btn.data('id'),
                                 name = btn.data('name'),
                                 desc = btn.data('desc'),
                                 cost = btn.data('cost');
                             
+                            // Objeto global del modal que se está abriendo.
                             let modal = $(this);
 
+                            // Reemplazamos todos los valores del botón hacia adentro del modal.
                             modal.find('.modal-title').text(`Editando ${name}`);
 
                             modal.find('#p-id').attr('value', id);
@@ -316,23 +369,23 @@ include("db.php");
                             modal.find("textarea[name='desc']").html(desc);
                         });
 
+                        // Cuando se clickea el modal...
                         $("#delete-type").on('show.bs.modal', function (e) {
                             let btn = $(e.relatedTarget);
 
+                            // Lista de datos en el botón.
                             let id   = btn.data('id'),
                                 name = btn.data('name');
                             
+                            // Objeto global del modal que se está abriendo.
                             let modal = $(this);
 
+                            // Reemplazamos todos los valores del botón hacia adentro del modal.
                             modal.find('.modal-title').text(`Eliminando ${name}...`);
                             modal.find('.modal-body').html(`Esta por eliminar el tipo de habitación "<b>${name}</b>", toda habitación con este tipo quedará sin el mismo. ¿Está seguro?`);
                             modal.find('.delete-btn').text(`Si, eliminar ${name}.`);
 
                             modal.find('#p-id').attr('value', id);
-                        });
-
-                        $("#room-resume").on('show.bs.modal', function (e) {
-                            let btn = $(e.relatedTarget);
                         });
                     </script>
                 </div>
@@ -342,6 +395,17 @@ include("db.php");
 </html>
 
 <?php
+
+//  Debajo de todas las páginas donde hay interacción con la base de datos tenemos estas declaraciones.
+//
+//  PHP detecta si el usuario hizo un request HTTP POST (enviar datos a la página), si ese es el caso, procede a obtener la lista de datos
+// que el formulario envió para luego ponerlos en una 'query' la cual será interpretada por la base de datos y hará la acción necesaria.
+//
+//  SELECT se utiliza para traer datos de una tabla desde la base, INSERT para insertar nuevos datos en una tabla, DELETE para eliminar datos
+// de una tabla, y UPDATE para actualizar valores de un registro existente en una tabla de la base de datos.
+//
+//  Existen muchos otros statements de SQL para interactuar con la DB, todos estos han sido utilizados desde el conocimiento brindado por
+// la documentación del lenguaje SQL: https://dev.mysql.com/doc/
 
 if (isset($_POST['registerRoom'])) {
     $num = $_POST['numero'];

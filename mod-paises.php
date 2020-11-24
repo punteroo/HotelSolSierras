@@ -1,3 +1,7 @@
+<!-- ESTE ARCHIVO ES UN MÓDULO, EL PREFIJO 'mod' INDICA MÓDULO. -->
+
+<!-- Este tag select se utiliza para el país de origen. Viene pre-cargado con todos los paises del mundo. -->
+
 <select class="form-control" name="pais">
     <option value="Argentina" id="AR">Argentina</option>
     <option value="Afganistán" id="AF">Afganistán</option>

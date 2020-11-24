@@ -1,3 +1,8 @@
+<!-- ESTE ARCHIVO ES UN MÓDULO, EL PREFIJO 'mod' INDICA MÓDULO. -->
+
+<!-- Este archivo contiene todo el HTML de nuestro 'header', que es la parte superior de nuestra página que permite explorar
+    las distintas secciones de la página. -->
+
 <nav class="navbar navbar-expand-lg navbar-light bb" style="background-color: #549fcf; border-bottom: 5px solid #3e87bd;">
     <a class="navbar-brand" href="/">
         <img src="img/logo.svg" width="60px" data-toggle="tooltip" title="Home">
