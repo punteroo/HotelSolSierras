@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+.header {
+    display: block;
+    background-color: #658bc9;
+    padding: 20px;
+    width: 60px;
+    height: 100vh;
+}
+
+.logo {
+    text-align: center;
+}
+
+.buttons {
+    position: inherit;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.buttons a {
+    display: flow-root;
+    margin: auto;
+    padding: 15px 0 15px 0;
+}
+
+.main {
+    position: absolute;
+    left: 100px;
+
+    width: 90vw;
+    height: 100vh;
+
+    background-color: #fff;
+}
+
+.section {
+    margin: 30px;
+    padding: 15px;
+
+    background-color: #eee;
+    width: 90vw;
+    min-height: 5%;
+}
+
+p {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+b {
+    font-family: 'Open Sans', sans-serif;
+}
+*/

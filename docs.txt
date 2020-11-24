@@ -1,0 +1,21 @@
+Trabajo Integrador Algoritmos 2020 - Hotel Sol de las Sierras
+
+Integrantes:
+    - COSTAMAGNA, Leonel Osvaldo
+    - DEMARCHI, Andrés
+    - FANTINI, Domingo Marcial
+    - MAZA BIANCHI, Lucas
+    - MOSCA, Sebastían Jesús
+    - VARGAS, Milagros Asunción
+
+  Vamos a desarrollar el sistema de información identificado en el caso de estudio brindado con la funcionalidad dada por
+algunos de los alcances de este.
+  
+
+Las herramientas que decidimos utilizar para este desarrollo son las siguientes:
+    - HTML (HyperText Markup Language)
+    - CSS (Cascading StyleSheets)
+    - Bootstrap (CSS Framework para Diseño)
+    - JavaScript
+    - PHP
+    - MySQL (MariaDB / PHPMyAdmin)
