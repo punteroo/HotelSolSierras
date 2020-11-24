@@ -1,3 +1,5 @@
+![Logo](https://i.imgur.com/crV1eqm.png)
+
 # Sistema de Administración - Hotel Sol de las Sierras
 
 Este repositorio contiene la completitud del proyecto integrador para las cátedras **Sistemas y Organizaciones & Algoritmos y Estructuras de Datos** dentro de la **Universidad Tecnológica Nacional Facultad Regional Villa María**.
