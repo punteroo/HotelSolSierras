@@ -20,6 +20,7 @@ Hemos implementado el uso de muchas herramientas para completar el sistema de in
 - [CSS](https://en.wikipedia.org/wiki/CSS)
 - [JavaScript](https://www.javascript.com/)
 - [JQuery (libreria)](https://jquery.com/)
+- [CanvasJS (libreria)](https://canvasjs.com/)
 - [Bootstrap (FrameWork)](https://getbootstrap.com/)
 - [MariaDB](https://mariadb.org/)
 - [phpMyAdmin](https://www.phpmyadmin.net/)
