@@ -16,9 +16,13 @@
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control" placeholder="Juan Olmedo" name="nombre">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mr-2">
                             <label for="apellido">Apellido</label>
                             <input type="text" class="form-control" placeholder="Pérez" name="apellido">
+                        </div>
+                        <div class="form-group">
+                            <label for="edad">Edad</label>
+                            <input type="number" class="form-control" name="edad" min="0" step="1">
                         </div>
                     </div>
                     <div class="form-group d-flex">
