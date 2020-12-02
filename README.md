@@ -4,6 +4,12 @@
 
 Este repositorio contiene la completitud del proyecto integrador para las cátedras **Sistemas y Organizaciones & Algoritmos y Estructuras de Datos** dentro de la **Universidad Tecnológica Nacional Facultad Regional Villa María**.
 
+Nuestros docentes participantes en el desarrollo del prototipo son:
+- **Ing. Paola Simieli (SOR & AyD)**
+- **Ing. Maria Ines Tarantola (SOR)**
+- **Ing. Pablo Parruccia (AyD)**
+- **Ing. Mario Rinaldi (AyD)**
+
 El trabajo práctico pertenece al equipo **Anarqui-Team** contribuido por los alumnos:
 - **DEMARCHI, Andrés**
 - **MOSCA, Sebastián Jesús**
