@@ -32,4 +32,5 @@ Hemos implementado el uso de muchas herramientas para completar el sistema de in
 Facilitamos una web para la prueba de nuestro software donde se puede interactuar con el sistema sin necesidad de instalar nada.
 Si quieres utilizar este sistema en tu propio servidor, debes instalar una distribución de [Apache](https://httpd.apache.org/) mínimamente con **PHP** y una base de datos **MySQL** para su funcionamiento correcto.
 
-El link a la web será visualizado aquí una vez se presente el proyecto (Viernes 27 de Noviembre de 2020).
+# Link a la Web
+[Ingresar a la aplicación](https://anarquiteam.000webhostapp.com/)
